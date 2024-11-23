@@ -1,40 +1,63 @@
-// Caminho do arquivo JSON
-const jsonFile = 'schools.json';
+// Selecionando o formulário e mensagem de sucesso
+const reviewForm = document.getElementById('review-form');
+const successMessage = document.getElementById('success-message');
 
-// Elemento onde vamos exibir as escolas
-const schoolList = document.getElementById('school-list');
+// Evento de envio do formulário
+if (reviewForm) {
+  reviewForm.addEventListener('submit', function (event) {
+    event.preventDefault();
 
-// Função para carregar os dados do JSON
-async function loadSchools() {
-  try {
-    const response = await fetch(jsonFile); // Carrega o arquivo JSON
-    const schools = await response.json(); // Converte para um objeto JS
+    // Pegando os valores do formulário
+    const schoolName = document.getElementById('school-name').value;
+    const location = document.getElementById('location').value;
+    const rating = parseFloat(document.getElementById('rating').value);
+    const comments = document.getElementById('comments').value;
 
-    // Limpa a mensagem de carregamento
-    schoolList.innerHTML = '';
+    // Criando o objeto da nova avaliação
+    const newReview = {
+      name: schoolName,
+      location: location,
+      rating: rating,
+      comments: [comments],
+    };
 
-    // Adiciona cada escola ao HTML
-    schools.forEach(school => {
-      const schoolDiv = document.createElement('div');
-      schoolDiv.className = 'school';
+    // Buscando avaliações existentes no localStorage
+    const storedReviews = localStorage.getItem('schools');
+    let reviews = storedReviews ? JSON.parse(storedReviews) : [];
 
-      schoolDiv.innerHTML = `
-        <h2>${school.name}</h2>
-        <p>Localização: ${school.location}</p>
-        <p>Avaliação: ${school.rating}</p>
-        <h3>Comentários:</h3>
-        <ul>
-          ${school.comments.map(comment => `<li>${comment}</li>`).join('')}
-        </ul>
-      `;
+    // Adicionando a nova avaliação à lista
+    reviews.push(newReview);
 
-      schoolList.appendChild(schoolDiv);
-    });
-  } catch (error) {
-    schoolList.innerHTML = '<p>Erro ao carregar as escolas. Tente novamente mais tarde.</p>';
-    console.error('Erro ao carregar JSON:', error);
-  }
+    // Salvando de volta no localStorage
+    localStorage.setItem('schools', JSON.stringify(reviews));
+
+    // Mostrando mensagem de sucesso
+    successMessage.style.display = 'block';
+    reviewForm.reset();
+  });
 }
 
-// Chama a função ao carregar a página
-if (schoolList) loadSchools();
+// Carregando avaliações no schools.html
+if (schoolList) {
+  const storedReviews = localStorage.getItem('schools');
+  const reviews = storedReviews ? JSON.parse(storedReviews) : [];
+
+  schoolList.innerHTML = '';
+
+  reviews.forEach((school) => {
+    const schoolDiv = document.createElement('div');
+    schoolDiv.className = 'school';
+
+    schoolDiv.innerHTML = `
+      <h2>${school.name}</h2>
+      <p>Localização: ${school.location}</p>
+      <p>Avaliação: ${school.rating}</p>
+      <h3>Comentários:</h3>
+      <ul>
+        ${school.comments.map((comment) => `<li>${comment}</li>`).join('')}
+      </ul>
+    `;
+
+    schoolList.appendChild(schoolDiv);
+  });
+}
