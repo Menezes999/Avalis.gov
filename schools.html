@@ -15,9 +15,12 @@
     .container {
       width: 80%;
       margin: 0 auto;
+      padding-top: 20px;
     }
     h1 {
       text-align: center;
+      color: #6A0DAD; /* Cor roxa para o título */
+      font-size: 2em;
       margin-top: 20px;
     }
     .school {
@@ -26,19 +29,58 @@
       margin-bottom: 20px;
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-left: 5px solid #6A0DAD; /* Detalhe roxo à esquerda */
     }
     .school h2 {
+      color: #6A0DAD; /* Cor roxa para o nome da escola */
       margin-top: 0;
+    }
+    .school p {
+      font-size: 1em;
+      line-height: 1.6;
+    }
+    .school ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .school ul li {
+      background-color: #f1f1f1;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 4px;
     }
     .loading {
       text-align: center;
       margin-top: 50px;
+      font-size: 1.2em;
+      color: #6A0DAD;
+    }
+    .school .rating {
+      font-weight: bold;
+      color: #FF6347; /* Cor para a avaliação */
+    }
+    /* Estilo para o botão de voltar */
+    .back-button {
+      background-color: #6A0DAD;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .back-button:hover {
+      background-color: #5a0c91; /* Cor um pouco mais escura ao passar o mouse */
     }
   </style>
 </head>
 <body>
 
   <div class="container">
+    <a href="index.html" class="back-button">Voltar para a Página Inicial</a>
     <h1>Avaliações de Escolas</h1>
     <div id="loading" class="loading">
       <p>Carregando avaliações...</p>
@@ -46,7 +88,6 @@
     <div id="school-list"></div>
   </div>
 
-  <!-- Coloque o script no final do body -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const schoolList = document.getElementById('school-list');
@@ -70,8 +111,8 @@
 
             schoolDiv.innerHTML = `
               <h2>${school.name}</h2>
-              <p>Localização: ${school.location}</p>
-              <p>Avaliação: ${school.rating}</p>
+              <p><strong>Localização:</strong> ${school.location}</p>
+              <p><strong>Avaliação:</strong> <span class="rating">${school.rating} estrelas</span></p>
               <h3>Comentários:</h3>
               <ul>
                 ${school.comments.map((comment) => `<li>${comment}</li>`).join('')}
