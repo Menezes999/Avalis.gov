@@ -1,32 +1,36 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const schoolList = document.getElementById('school-list');
-  const loadingMessage = document.querySelector('main p');
-  
-  // Verifica se o 'school-list' está presente na página
-  if (schoolList) {
-    const storedReviews = localStorage.getItem('schools');
-    const reviews = storedReviews ? JSON.parse(storedReviews) : [];
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('review-form');
 
-    if (reviews.length === 0) {
-      schoolList.innerHTML = "<p>Nenhuma avaliação disponível.</p>";
-    } else {
-      schoolList.innerHTML = ''; // Limpa qualquer conteúdo de carregamento
-      loadingMessage.style.display = 'none'; // Esconde a mensagem de carregamento
-      
-      reviews.forEach((school) => {
-        const schoolDiv = document.createElement('div');
-        schoolDiv.className = 'school';
-        schoolDiv.innerHTML = `
-          <h2>${school.name}</h2>
-          <p><strong>Localização:</strong> ${school.location}</p>
-          <p><strong>Avaliação:</strong> <span class="rating">${school.rating} estrelas</span></p>
-          <h3>Comentários:</h3>
-          <ul>
-            ${school.comments.map(comment => `<li>${comment}</li>`).join('')}
-          </ul>
-        `;
-        schoolList.appendChild(schoolDiv);
-      });
-    }
-  }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(); // Impede o envio padrão do formulário
+
+    // Captura os dados do formulário
+    const schoolName = document.getElementById('school-name').value;
+    const schoolLocation = document.getElementById('school-location').value;
+    const rating = document.getElementById('rating').value;
+    const comments = document.getElementById('comments').value;
+
+    // Cria um objeto com os dados da avaliação
+    const newReview = {
+      name: schoolName,
+      location: schoolLocation,
+      rating: rating,
+      comments: comments.split('\n'), // Divide os comentários em linhas
+    };
+
+    // Recupera as avaliações já existentes no localStorage, ou um array vazio se não houver nenhuma
+    const storedReviews = JSON.parse(localStorage.getItem('schools')) || [];
+
+    // Adiciona a nova avaliação ao array
+    storedReviews.push(newReview);
+
+    // Salva as avaliações atualizadas no localStorage
+    localStorage.setItem('schools', JSON.stringify(storedReviews));
+
+    // Limpa o formulário
+    form.reset();
+
+    // Redireciona para a página de escolas avaliadas
+    window.location.href = 'schools.html';
+  });
 });
