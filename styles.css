@@ -1,51 +1,140 @@
-/* Estilos globais */
-body {
-  font-family: Arial, sans-serif;
+/* Estilos Globais */
+* {
   margin: 0;
   padding: 0;
-  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
   color: #333;
 }
 
 header {
+  background-color: #6A0DAD;
+  color: white;
+  padding: 20px;
   text-align: center;
-  padding: 50px;
-  background-color: #6200ea;
-  color: white;
 }
 
-header .btn {
+header h1 {
+  font-size: 2.5em;
+}
+
+header a.btn {
   display: inline-block;
-  margin: 10px;
-  padding: 10px 20px;
-  background-color: white;
-  color: #6200ea;
-  text-decoration: none;
-  border-radius: 5px;
-}
-
-header .btn:hover {
-  background-color: #3700b3;
+  background-color: #6A0DAD;
   color: white;
-}
-
-main {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 10px;
-}
-
-.school {
-  border: 1px solid #ccc;
+  padding: 10px 20px;
   border-radius: 5px;
+  text-decoration: none;
+  margin-top: 10px;
+  font-size: 1.2em;
+}
+
+header a.btn:hover {
+  background-color: #5a0c91;
+}
+
+.hero {
+  background: linear-gradient(to right, #6A0DAD, #4B0082);
+  color: white;
+  padding: 40px 0;
+  text-align: center;
+  animation: fadeIn 2s ease-in;
+}
+
+.hero h2 {
+  font-size: 2em;
   margin-bottom: 20px;
-  padding: 15px;
-  background-color: white;
+}
+
+.hero p {
+  font-size: 1.2em;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #6200ea;
+  background-color: #6A0DAD;
   color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+footer p {
+  font-size: 1em;
+}
+
+/* Formulário */
+.form-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-container label {
+  font-size: 1.1em;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.form-container input, .form-container select, .form-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.form-container button {
+  background-color: #6A0DAD;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.form-container button:hover {
+  background-color: #5a0c91;
+}
+
+/* Lista de Escolas */
+#school-list {
+  padding: 20px;
+  background-color: white;
+}
+
+.school {
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.school h3 {
+  color: #6A0DAD;
+}
+
+.school p {
+  font-size: 1.1em;
+}
+
+.school .rating {
+  font-weight: bold;
+  color: #FF6347;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
