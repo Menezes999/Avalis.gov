@@ -1,36 +1,48 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+  // Página de Avaliação (review.html)
   const form = document.getElementById('review-form');
-
   form.addEventListener('submit', function (e) {
-    e.preventDefault(); // Impede o envio padrão do formulário
+    e.preventDefault();
 
-    // Captura os dados do formulário
     const schoolName = document.getElementById('school-name').value;
     const schoolLocation = document.getElementById('school-location').value;
     const rating = document.getElementById('rating').value;
     const comments = document.getElementById('comments').value;
 
-    // Cria um objeto com os dados da avaliação
     const newReview = {
       name: schoolName,
       location: schoolLocation,
       rating: rating,
-      comments: comments.split('\n'), // Divide os comentários em linhas
+      comments: comments
     };
 
-    // Recupera as avaliações já existentes no localStorage, ou um array vazio se não houver nenhuma
     const storedReviews = JSON.parse(localStorage.getItem('schools')) || [];
-
-    // Adiciona a nova avaliação ao array
     storedReviews.push(newReview);
-
-    // Salva as avaliações atualizadas no localStorage
     localStorage.setItem('schools', JSON.stringify(storedReviews));
 
-    // Limpa o formulário
     form.reset();
-
-    // Redireciona para a página de escolas avaliadas
     window.location.href = 'schools.html';
   });
+
+  // Página de Escolas Avaliadas (schools.html)
+  const schoolList = document.getElementById('school-list');
+  const reviews = JSON.parse(localStorage.getItem('schools')) || [];
+
+  if (reviews.length === 0) {
+    schoolList.innerHTML = "<p>Nenhuma avaliação disponível.</p>";
+  } else {
+    schoolList.innerHTML = '';
+    reviews.forEach(function (review) {
+      const schoolElement = document.createElement('div');
+      schoolElement.classList.add('school');
+      schoolElement.innerHTML = `
+        <h3>${review.name} - ${review.location}</h3>
+        <p class="rating">Avaliação: ${review.rating} estrelas</p>
+        <p>${review.comments}</p>
+      `;
+      schoolList.appendChild(schoolElement);
+    });
+  }
+
 });
