@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avaliar Escola</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Avaliar uma Escola</h1>
+    <a href="index.html" class="btn">Voltar para a Página Inicial</a>
+  </header>
+  <main>
+    <form id="review-form">
+      <label for="school-name">Nome da Escola:</label>
+      <input type="text" id="school-name" name="schoolName" required placeholder="Ex: Escola Municipal ABC">
+
+      <label for="location">Localização:</label>
+      <input type="text" id="location" name="location" required placeholder="Ex: São Paulo, SP">
+
+      <label for="rating">Avaliação (1 a 5):</label>
+      <input type="number" id="rating" name="rating" min="1" max="5" required>
+
+      <label for="comments">Comentários:</label>
+      <textarea id="comments" name="comments" rows="4" placeholder="Escreva sua opinião sobre a escola"></textarea>
+
+      <button type="submit" class="btn">Enviar Avaliação</button>
+    </form>
+    <p id="success-message" style="display: none; color: green;">Avaliação enviada com sucesso!</p>
+  </main>
+  <footer>
+    <p>© 2024 Avalie Sua Escola</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
