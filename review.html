@@ -5,80 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Avalie Sua Escola</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    /* Estilos básicos para o formulário */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
-    header {
-      background-color: #6A0DAD;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    .form-container {
-      max-width: 600px;
-      margin: 30px auto;
-      padding: 20px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    .form-container input, .form-container textarea, .form-container select {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-      font-size: 1em;
-    }
-    .form-container button {
-      background-color: #6A0DAD;
-      color: white;
-      padding: 10px 20px;
-      font-size: 1.2em;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-    }
-    .form-container button:hover {
-      background-color: #5a0c91;
-    }
-  </style>
 </head>
 <body>
-
   <header>
-    <h1>Avalie Sua Escola</h1>
+    <h1>Avalie a Sua Escola</h1>
+    <a href="index.html" class="btn">Voltar para a Página Inicial</a>
   </header>
 
-  <div class="form-container">
-    <h2>Deixe sua avaliação sobre a escola</h2>
-    <form id="review-form">
-      <label for="school-name">Nome da Escola</label>
-      <input type="text" id="school-name" name="school-name" required>
-      
-      <label for="school-location">Localização</label>
-      <input type="text" id="school-location" name="school-location" required>
-      
-      <label for="rating">Avaliação (1 a 5 estrelas)</label>
-      <select id="rating" name="rating" required>
-        <option value="1">1 Estrela</option>
-        <option value="2">2 Estrelas</option>
-        <option value="3">3 Estrelas</option>
-        <option value="4">4 Estrelas</option>
-        <option value="5">5 Estrelas</option>
-      </select>
-      
-      <label for="comments">Comentários</label>
-      <textarea id="comments" name="comments" rows="4" required></textarea>
-      
-      <button type="submit">Enviar Avaliação</button>
-    </form>
-  </div>
+  <main>
+    <div class="form-container">
+      <h2>Preencha o formulário abaixo</h2>
+      <form id="review-form">
+        <label for="school-name">Nome da Escola:</label>
+        <input type="text" id="school-name" required>
+
+        <label for="school-location">Localização:</label>
+        <input type="text" id="school-location" required>
+
+        <label for="rating">Avaliação (1 a 5 estrelas):</label>
+        <select id="rating" required>
+          <option value="1">1 Estrela</option>
+          <option value="2">2 Estrelas</option>
+          <option value="3">3 Estrelas</option>
+          <option value="4">4 Estrelas</option>
+          <option value="5">5 Estrelas</option>
+        </select>
+
+        <label for="comments">Comentários:</label>
+        <textarea id="comments" rows="4" required></textarea>
+
+        <button type="submit">Enviar Avaliação</button>
+      </form>
+    </div>
+  </main>
 
   <footer>
     <p>© 2024 Avalie Sua Escola</p>
