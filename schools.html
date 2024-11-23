@@ -1,130 +1,92 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Avaliações de Escolas</title>
+  <title>Lista de Escolas</title>
+  <link rel="stylesheet" href="styles.css">
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f4f4f4;
+      background-color: #f9f9f9;
       color: #333;
     }
-    .container {
-      width: 80%;
-      margin: 0 auto;
-      padding-top: 20px;
-    }
-    h1 {
+    header {
+      background-color: #6A0DAD;
+      color: white;
+      padding: 20px;
       text-align: center;
-      color: #6A0DAD; /* Cor roxa para o título */
-      font-size: 2em;
+    }
+    header h1 {
+      margin: 0;
+    }
+    .btn {
+      display: inline-block;
+      background-color: #6A0DAD;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      border-radius: 5px;
+      text-decoration: none;
       margin-top: 20px;
     }
-    .school {
-      background-color: #fff;
+    .btn:hover {
+      background-color: #5a0c91;
+    }
+    main {
       padding: 20px;
+    }
+    .school {
+      background-color: white;
+      padding: 15px;
       margin-bottom: 20px;
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      border-left: 5px solid #6A0DAD; /* Detalhe roxo à esquerda */
+      border-left: 5px solid #6A0DAD;
     }
     .school h2 {
-      color: #6A0DAD; /* Cor roxa para o nome da escola */
+      color: #6A0DAD;
       margin-top: 0;
     }
     .school p {
       font-size: 1em;
       line-height: 1.6;
     }
-    .school ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    .school ul li {
-      background-color: #f1f1f1;
-      padding: 10px;
-      margin: 5px 0;
-      border-radius: 4px;
-    }
-    .loading {
-      text-align: center;
-      margin-top: 50px;
-      font-size: 1.2em;
-      color: #6A0DAD;
-    }
     .school .rating {
       font-weight: bold;
-      color: #FF6347; /* Cor para a avaliação */
+      color: #FF6347;
     }
-    /* Estilo para o botão de voltar */
-    .back-button {
+    footer {
+      text-align: center;
       background-color: #6A0DAD;
       color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 1.2em;
-      border-radius: 5px;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 20px;
-      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
     }
-    .back-button:hover {
-      background-color: #5a0c91; /* Cor um pouco mais escura ao passar o mouse */
+    footer p {
+      margin: 0;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <a href="index.html" class="back-button">Voltar para a Página Inicial</a>
-    <h1>Avaliações de Escolas</h1>
-    <div id="loading" class="loading">
-      <p>Carregando avaliações...</p>
-    </div>
-    <div id="school-list"></div>
-  </div>
+  <header>
+    <h1>Escolas Avaliadas</h1>
+    <a href="index.html" class="btn">Voltar para a Página Inicial</a>
+  </header>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const schoolList = document.getElementById('school-list');
-      const loadingMessage = document.getElementById('loading');
+  <main id="school-list">
+    <p>Carregando escolas...</p>
+  </main>
 
-      // Verifica se o elemento 'school-list' existe na página
-      if (schoolList) {
-        const storedReviews = localStorage.getItem('schools');
-        const reviews = storedReviews ? JSON.parse(storedReviews) : [];
+  <footer>
+    <p>© 2024 Avalie Sua Escola</p>
+  </footer>
 
-        // Se não houver avaliações, mostra uma mensagem
-        if (reviews.length === 0) {
-          schoolList.innerHTML = "<p>Nenhuma avaliação disponível.</p>";
-        } else {
-          schoolList.innerHTML = ''; // Limpa qualquer conteúdo anterior
-          loadingMessage.style.display = 'none'; // Esconde a mensagem de carregamento
-
-          reviews.forEach((school) => {
-            const schoolDiv = document.createElement('div');
-            schoolDiv.className = 'school';
-
-            schoolDiv.innerHTML = `
-              <h2>${school.name}</h2>
-              <p><strong>Localização:</strong> ${school.location}</p>
-              <p><strong>Avaliação:</strong> <span class="rating">${school.rating} estrelas</span></p>
-              <h3>Comentários:</h3>
-              <ul>
-                ${school.comments.map((comment) => `<li>${comment}</li>`).join('')}
-              </ul>
-            `;
-
-            schoolList.appendChild(schoolDiv);
-          });
-        }
-      }
-    });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
