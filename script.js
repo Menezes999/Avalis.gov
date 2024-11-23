@@ -1,4 +1,4 @@
-h// Caminho do arquivo JSON
+// Caminho do arquivo JSON
 const jsonFile = 'schools.json';
 
 // Elemento onde vamos exibir as escolas
